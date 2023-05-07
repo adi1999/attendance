@@ -8,11 +8,11 @@ app = Flask(__name__)
 @app.route('/identify', methods=['POST'])
 def identify_face():
     # Read the image from the request
-    image_data = request.files['image'].read()
+    image_data = request.files['image']
     # Convert the image buffer to a numpy array
-    nparr = np.frombuffer(image_data, np.uint8)
+    # nparr = np.frombuffer(image_data, np.uint8)
     # Load the image using face_recognition
-    image = face_recognition.load_image_file(nparr)
+    image = face_recognition.load_image_file(image_data)
 
     # Find faces in the image
     face_locations = face_recognition.face_locations(image)
